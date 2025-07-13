@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendZone - Votre boutique de mode en ligne</title>
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --dark: #292F36;
+            --light: #F7FFF7;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            margin-left: 1rem;
+            color: var(--dark);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 99;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+        
+        .floating-btn::after {
+            content: attr(title);
+            position: absolute;
+            right: 70px;
+            white-space: nowrap;
+            background: var(--dark);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .floating-btn:hover::after {
+            opacity: 1;
+        }
+        
+        /* Featured Categories */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Products */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .like-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.2s;
+        }
+        
+        .like-btn.liked {
+            color: var(--primary);
+        }
+        
+        .product-info {
+            padding: 1.2rem;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        
+        .btn-add-to-cart {
+            width: 100%;
+            padding: 0.7rem;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-add-to-cart:hover {
+            background: #1a1f24;
+        }
+        
+        /* Coupon Section */
+        .coupon-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .coupon-code {
+            background: white;
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        
+        /* Checkout Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+        }
+        
+        .step.active .step-number {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 60%;
+            width: 80%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: -1;
+        }
+        
+        .checkout-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        
+        .checkout-summary {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-top: 1px solid #ddd;
+            padding-top: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 0.95rem;
+        }
+        
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                margin: 1rem 0;
+            }
+            
+            nav ul li {
+                margin: 0 0.8rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 6px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 6px;
+                padding: 0.9rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">TrendZone</a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Femmes</a></li>
+                    <li><a href="#">Hommes</a></li>
+                    <li><a href="#">Enfants</a></li>
+                    <li><a href="#">Nouveautés</a></li>
+                    <li><a href="#">Promotions</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+    <a href="#"><i class="fas fa-search"></i></a>
+    <a href="#"><i class="fas fa-user"></i></a>
+    <a href="#" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+</div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Collection Été 2023</h1>
+            <p>Découvrez notre nouvelle collection avec des designs exclusifs et des matières premium</p>
+            <a href="#" class="btn btn-primary">Voir la collection</a>
+        </div>
+    </section>
+    
+    <!-- Coupon Section -->
+    <div class="container">
+        <div class="coupon-section">
+            <h2>CODE PROMO EXCLUSIF</h2>
+            <p>Profitez de 15% de réduction sur votre première commande</p>
+            <div class="coupon-code">TREND15</div>
+            <p>Valable jusqu'au 30/06/2023</p>
+        </div>
+    </div>
+    
+    <!-- Featured Categories -->
+    <div class="container">
+        <h2 class="section-title">Catégories populaires</h2>
+        
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="category-info">
+                    <h3>Vêtements Femmes</h3>
+                    <a href="#">Voir tout</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="category-info">
+                    <h3>Vêtements Hommes</h3>
+                    <a href="#">Voir tout</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1595341595379-cf0f2f3a9ab6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="category-info">
+                    <h3>Accessoires</h3>
+                    <a href="#">Voir tout</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="category-info">
+                    <h3>Chaussures</h3>
+                    <a href="#">Voir tout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Featured Products -->
+    <div class="container">
+        <h2 class="section-title">Nouveautés</h2>
+        
+        <div class="products">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">Nouveau</span>
+                </div>
+                <div class="product-info">
+                    <h3>Robe d'été fleurie</h3>
+                    <div class="product-price">€49.99 <span class="old-price">€69.99</span></div>
+                    <button class="btn-add-to-cart" data-id="1" data-name="Robe d'été fleurie" data-price="49.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">-30%</span>
+                </div>
+                <div class="product-info">
+                    <h3>Chemise homme slim</h3>
+                    <div class="product-price">€34.99 <span class="old-price">€49.99</span></div>
+                    <button class="btn-add-to-cart" data-id="2" data-name="Chemise homme slim" data-price="34.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Sac à main cuir</h3>
+                    <div class="product-price">€79.99</div>
+                    <button class="btn-add-to-cart" data-id="3" data-name="Sac à main cuir" data-price="79.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Baskets urbaines</h3>
+                    <div class="product-price">€59.99</div>
+                    <button class="btn-add-to-cart" data-id="4" data-name="Baskets urbaines" data-price="59.99">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Abonnez-vous à notre newsletter</h2>
+            <p>Recevez en exclusivité nos offres spéciales et nouveautés directement dans votre boîte mail.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit">S'abonner</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Finaliser votre commande</h2>
+            
+            <div class="checkout-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div>Panier</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>Livraison</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>Paiement</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>Confirmation</div>
+                </div>
+            </div>
+            
+            <div class="checkout-form">
+                <h3>Votre panier</h3>
+                <div id="cart-items">
+                    <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+                </div>
+                
+                <div class="checkout-summary">
+                    <div class="summary-item">
+                        <span>Sous-total</span>
+                        <span id="subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Livraison</span>
+                        <span>Gratuite</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span id="total">€0.00</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="coupon">Code promo</label>
+                    <input type="text" id="coupon" class="form-control" placeholder="Entrez votre code promo">
+                    <button id="apply-coupon" class="btn btn-primary" style="margin-top: 0.5rem;">Appliquer</button>
+                </div>
+                
+                <button id="proceed-to-checkout" class="btn btn-primary" style="margin-top: 1.5rem;">Passer à la livraison</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button class="floating-btn" style="background: linear-gradient(to right, #FF6B6B, #FF8E8E);" title="Partager sur les réseaux">
+            <i class="fas fa-camera text-xl"></i>
+        </button>
+        <button class="floating-btn" style="background: linear-gradient(to right, #6B66FF, #8E8AFF);" title="Cagnotte commune">
+            <i class="fas fa-gift text-xl"></i>
+        </button>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>TrendZone</h3>
+                    <p>Votre boutique de mode en ligne avec les dernières tendances à des prix abordables.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Boutique</h3>
+                    <ul>
+                        <li><a href="#">Femmes</a></li>
+                        <li><a href="#">Hommes</a></li>
+                        <li><a href="#">Enfants</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                        <li><a href="#">Promotions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Aide</h3>
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                        <li><a href="#">Guide des tailles</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">CGV</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TrendZone. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Gestion des likes
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('liked');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+            });
+        });
+        
+        // Gestion du panier
+        let cart = [];
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = cartIcon.querySelector('.cart-count');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        
+        // Ouvrir le panier
+        cartIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            updateCartDisplay();
+            checkoutModal.style.display = 'block';
+        });
+        
+        // Fermer le modal
+        closeModal.addEventListener('click', function() {
+            checkoutModal.style.display = 'none';
+        });
+        
+        // Ajouter au panier
+        document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                // Vérifier si l'article est déjà dans le panier
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                // Mettre à jour le compteur du panier
+                updateCartCount();
+                
+                // Afficher une notification
+                alert(`${name} a été ajouté à votre panier!`);
+            });
+        });
+        
+        // Mettre à jour le compteur du panier
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        // Mettre à jour l'affichage du panier
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Votre panier est vide.</p>';
+                subtotalElement.textContent = '€0.00';
+                totalElement.textContent = '€0.00';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>€${itemTotal.toFixed(2)}</span>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            subtotalElement.textContent = `€${subtotal.toFixed(2)}`;
+            totalElement.textContent = `€${subtotal.toFixed(2)}`;
+        }
+        
+        // Appliquer un coupon
+        document.getElementById('apply-coupon').addEventListener('click', function() {
+            const couponCode = document.getElementById('coupon').value;
+            
+            if (couponCode.toUpperCase() === 'TREND15') {
+                const subtotalText = subtotalElement.textContent;
+                const subtotal = parseFloat(subtotalText.replace('€', ''));
+                const discount = subtotal * 0.15;
+                const total = subtotal - discount;
+                
+                // Ajouter la réduction au résumé
+                const discountElement = document.createElement('div');
+                discountElement.className = 'summary-item';
+                discountElement.innerHTML = `
+                    <span>Réduction (15%)</span>
+                    <span>-€${discount.toFixed(2)}</span>
+                `;
+                
+                // Vérifier si la réduction est déjà affichée
+                if (!document.getElementById('discount-element')) {
+                    discountElement.id = 'discount-element';
+                    cartItemsContainer.appendChild(discountElement);
+                } else {
+                    document.getElementById('discount-element').innerHTML = discountElement.innerHTML;
+                }
+                
+                totalElement.textContent = `€${total.toFixed(2)}`;
+                alert('Code promo appliqué avec succès!');
+            } else {
+                alert('Code promo invalide');
+            }
+        });
+        
+        // Passer à la livraison
+        document.getElementById('proceed-to-checkout').addEventListener('click', function() {
+            alert('Fonctionnalité de paiement à implémenter');
+            // Ici, vous pourriez ajouter la logique pour passer à l'étape suivante du checkout
+        });
+        
+        // Gestion des boutons flottants
+        document.querySelector('.floating-buttons button:nth-child(1)').addEventListener('click', function() {
+            alert('Fonctionnalité de partage sur les réseaux sociaux à implémenter');
+        });
+        
+        document.querySelector('.floating-buttons button:nth-child(2)').addEventListener('click', function() {
+            alert('Fonctionnalité de cagnotte commune à implémenter');
+        });
+    </script>
+</body>
+</html>
