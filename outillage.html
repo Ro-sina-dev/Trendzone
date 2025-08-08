@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outillage - Keluvato</title>
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #4ECDC4;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --beige: #f5f5dc;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            margin-left: 1rem;
+            color: var(--dark);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Category Header */
+        .category-header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1602810318383-34b6b7a1e7a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .category-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .category-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1.7;
+        }
+        
+        /* Category Cards */
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .category-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .category-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .category-info a {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .category-info a:hover {
+            background: #3a5ae8;
+        }
+        
+        /* Products Grid */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .product-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .like-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.2s;
+        }
+        
+        .like-btn.liked {
+            color: var(--primary);
+        }
+        
+        .product-info {
+            padding: 1.2rem;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        
+        .btn-add-to-cart {
+            width: 100%;
+            padding: 0.7rem;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-add-to-cart:hover {
+            background: #1a1f24;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: var(--beige);
+            color: var(--dark);
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px 0 0 6px;
+            font-size: 0.95rem;
+        }
+        
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                margin: 1rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.8rem;
+            }
+            
+            .category-header {
+                padding: 3rem 1rem;
+            }
+            
+            .category-header h1 {
+                font-size: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 6px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 6px;
+                padding: 0.9rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Keluvato Group</a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="meubles.html">Meubles</a></li>
+                    <li><a href="decoration.html">Décoration</a></li>
+                    <li><a href="bricolage.html">Bricolage</a></li>
+                    <li><a href="outillage.html">Outillage</a></li>
+                    <li><a href="nouveautes.html">Nouveautés</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="login.html"><i class="fas fa-user"></i></a>
+                <a href="#" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Category Header -->
+    <section class="category-header">
+        <div class="container">
+            <h1>Outillage</h1>
+            <p>Tout l'équipement nécessaire pour vos projets de bricolage et construction</p>
+        </div>
+    </section>
+    
+    <!-- Category Description -->
+    <div class="container">
+        <p class="category-description">
+            Découvrez notre gamme complète d'outils professionnels et accessoires pour tous vos travaux. 
+            Que vous soyez bricoleur occasionnel ou professionnel, nous avons les outils qu'il vous faut 
+            pour réaliser vos projets avec précision et efficacité.
+        </p>
+    </div>
+    
+  
+    
+    <!-- Products Grid -->
+    <div class="container">
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1591291621160-2322a17036ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">Nouveau</span>
+                </div>
+                <div class="product-info">
+                    <h3>Perceuse-visseuse sans fil 18V</h3>
+                    <div class="product-price">€129.99 <span class="old-price">€159.99</span></div>
+                    <button class="btn-add-to-cart" data-id="201" data-name="Perceuse-visseuse sans fil 18V" data-price="129.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">-20%</span>
+                </div>
+                <div class="product-info">
+                    <h3>Scie circulaire plongeante</h3>
+                    <div class="product-price">€149.99 <span class="old-price">€189.99</span></div>
+                    <button class="btn-add-to-cart" data-id="202" data-name="Scie circulaire plongeante" data-price="149.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1594708767771-a3672a87e73c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Set de tournevis 25 pièces</h3>
+                    <div class="product-price">€39.99</div>
+                    <button class="btn-add-to-cart" data-id="203" data-name="Set de tournevis 25 pièces" data-price="39.99">Ajouter au panier</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1592486058513-4a0d9c4f1a57?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+                    <button class="like-btn"><i class="far fa-heart"></i></button>
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Taille-haie électrique</h3>
+                    <div class="product-price">€89.99</div>
+                    <button class="btn-add-to-cart" data-id="204" data-name="Taille-haie électrique" data-price="89.99">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Abonnez-vous à notre newsletter</h2>
+            <p>Recevez en exclusivité nos offres spéciales et nouveautés directement dans votre boîte mail.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit">S'abonner</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Keluvato Group</h3>
+                    <p>Vente à distance d'articles meubles, décoration d'intérieur et extérieur, produits de bricolage et construction.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Boutique</h3>
+                    <ul>
+                        <li><a href="meubles.html">Meubles</a></li>
+                        <li><a href="decoration.html">Décoration</a></li>
+                        <li><a href="bricolage.html">Bricolage</a></li>
+                        <li><a href="outillage.html">Outillage</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Aide</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="livraison.html">Livraison</a></li>
+                        <li><a href="retours.html">Retours</a></li>
+                        <li><a href="guide-tailles.html">Guide des tailles</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="cgv.html">CGV</a></li>
+                        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Keluvato Group. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion des favoris (like)
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('liked');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('liked')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    // Stocker en favori (localStorage)
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    // Retirer des favoris
+                }
+            });
+        });
+
+        // Gestion du panier
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = cartIcon.querySelector('.cart-count');
+
+        // Mettre à jour le compteur au chargement
+        updateCartCount();
+
+        // Ajout au panier
+        document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                // Vérifier si le produit est déjà dans le panier
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                // Sauvegarder dans localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Mettre à jour le compteur
+                updateCartCount();
+                
+                // Notification
+                alert(`${name} a été ajouté à votre panier!`);
+            });
+        });
+
+        // Mettre à jour le compteur du panier
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Redirection vers la page de détails au clic sur l'image
+        document.querySelectorAll('.product-img').forEach((img, index) => {
+            img.addEventListener('click', function() {
+                const productIds = ['201', '202', '203', '204']; // IDs des produits dans l'ordre d'affichage
+                const productId = productIds[index];
+                window.location.href = `product-details.html?id=${productId}`;
+            });
+        });
+
+        // Redirection pour les images de catégorie
+        document.querySelectorAll('.category-img').forEach((img, index) => {
+            img.addEventListener('click', function() {
+                const categoryLinks = ['outillage-electroportatif.html', 'outillage-main.html', 'outillage-jardin.html', 'accessoires-outillage.html'];
+                window.location.href = categoryLinks[index];
+            });
+        });
+    </script>
+</body>
+</html>

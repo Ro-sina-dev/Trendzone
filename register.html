@@ -1,189 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TrendZone - Votre magasin social</title>
+    <title>Keluvato Group - Votre réseau social dédié à la maison</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-<body>
-  <header class="gradient-bg text-white shadow-md sticky top-0 z-40">
-      <div class="container mx-auto px-4 py-3">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-shopping-bag text-2xl"></i>
-            <h1 class="text-2xl font-bold">TrendZone</h1>
-          </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #4ECDC4;
+            --dark: #292F36;
+            --light: #F7FFF7;
+        }
+        
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header avec navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo et recherche -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-2xl font-bold text-indigo-600">Keluvato</a>
+                    <div class="hidden md:block relative w-64">
+                        <input type="text" placeholder="Rechercher des inspirations..." 
+                               class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
 
-          <div class="hidden md:flex items-center space-x-4">
-            <div class="relative">
-              <input
-                type="text"
-                placeholder="Rechercher des produits..."
-                class="px-4 py-2 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 w-64"
-              />
-              <button class="absolute right-3 top-2 text-gray-500">
-                <i class="fas fa-search"></i>
-              </button>
+                <!-- Navigation principale -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium"><i class="fas fa-home mr-1"></i> Accueil</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium"><i class="fas fa-store mr-1"></i> Boutique</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium"><i class="fas fa-users mr-1"></i> Communauté</a></li>
+                        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium"><i class="fas fa-lightbulb mr-1"></i> Inspirations</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Icônes utilisateur -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-bell text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profil" class="w-full h-full object-cover">
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="flex items-center space-x-6">
-            <a href="#" class="relative" id="favorites-link">
-              <i class="fas fa-heart text-xl"></i>
-              <span
-                id="favorites-count"
-                class="absolute -top-2 -right-2 bg-pink-500 text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                >0</span
-              >
-            </a>
-            <a href="#" class="relative">
-              <i class="fas fa-shopping-cart text-xl"></i>
-              <span
-                class="absolute -top-2 -right-2 bg-pink-500 text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                >0</span
-              >
-            </a>
-            <div class="relative" id="user-menu-container">
-              
-              <button
-                id="user-menu-button"
-                class="flex items-center space-x-2 focus:outline-none"
-                onclick="toggleUserMenu()"
-                >
-
-                <div
-                  class="w-8 h-8 rounded-full bg-white text-indigo-600 flex items-center justify-center"
-                >
-                  <i class="fas fa-user"></i>
+            <!-- Menu mobile -->
+            <div class="md:hidden mt-3">
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher..." 
+                           class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                 </div>
-                <span class="hidden md:inline">Mon compte</span>
-                <i class="fas fa-chevron-down text-xs"></i>
-              </button>
-  
-               
-              <div
-                id="user-menu"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden"
-                      >
-                <div id="not-logged-in">
-                  <a
-                    href="login.html"
-                    class="block px-4 py-2 text-gray-800 hover:bg-indigo-100"
-                    id="login-button"
-                  >
-                    <i class="fas fa-sign-in-alt mr-2"></i> Se connecter
-                  </a>
-                  <a
-                    href="register.html"
-                    class="block px-4 py-2 text-gray-800 hover:bg-indigo-100"
-                  >
-                    <i class="fas fa-user-plus mr-2"></i> S'inscrire
-                  </a>
-                </div>
-                <div id="logged-in" class="hidden">
-                  <a
-                    href="profil.html"
-                    class="block px-4 py-2 text-gray-800 hover:bg-indigo-100"
-                  >
-                    <i class="fas fa-user-circle mr-2"></i> Mon profil
-                  </a>
-                  <a
-                    href="parametre.html"
-                    class="block px-4 py-2 text-gray-800 hover:bg-indigo-100"
-                  >
-                    <i class="fas fa-cog mr-2"></i> Paramètres
-                  </a>
-                  <a
-                    href="logout.html"
-                    class="block px-4 py-2 text-gray-800 hover:bg-indigo-100"
-                    id="logout-button"
-                  >
-                    <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
-                  </a>
-                </div>
-              </div>
+                <nav class="mt-2">
+                    <ul class="flex justify-around">
+                        <li><a href="#" class="text-gray-700"><i class="fas fa-home text-xl"></i></a></li>
+                        <li><a href="#" class="text-gray-700"><i class="fas fa-store text-xl"></i></a></li>
+                        <li><a href="#" class="text-gray-700"><i class="fas fa-users text-xl"></i></a></li>
+                        <li><a href="#" class="text-gray-700"><i class="fas fa-lightbulb text-xl"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-          </div>
         </div>
-
-       
-
-        <nav class="mt-4">
-          <ul class="flex space-x-6 overflow-x-auto pb-2 scroll-container">
-            <li>
-              <a
-                href="login.html"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Accueil</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Nouveautés</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Vêtements</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Électronique</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Maison</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Beauté</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Sport</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Bijoux</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="nav-link text-white hover:text-indigo-200 font-medium"
-                >Promotions</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
     </header>
 
-    
+    <!-- Contenu principal -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Section Hero -->
+        <section class="bg-gradient-custom text-white rounded-xl p-8 mb-8">
+            <div class="max-w-2xl">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Partagez vos créations maison</h1>
+                <p class="text-lg mb-6">Rejoignez notre communauté d'experts en décoration, bricolage et design d'intérieur</p>
+                <button class="bg-white text-indigo-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Commencer maintenant</button>
+            </div>
+        </section>
+
+        <!-- Section Catégories -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Explorez par catégories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:shadow-md transition">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-couch text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium">Meubles</h3>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:shadow-md transition">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-paint-roller text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium">Décoration</h3>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:shadow-md transition">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-tools text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium">Bricolage</h3>
+                </a>
+                <a href="#" class="bg-white rounded-lg shadow p-4 text-center hover:shadow-md transition">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-home text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium">Construction</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section Flux social -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Dernières publications</h2>
+                <button class="text-indigo-600 font-medium flex items-center">
+                    <i class="fas fa-sliders-h mr-2"></i> Filtres
+                </button>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Publication 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Utilisateur" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Marie Dupont</h4>
+                            <p class="text-gray-500 text-sm">2 heures ago · <i class="fas fa-globe-americas"></i></p>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-3">
+                        <p>Je partage ma dernière création : une table basse en palette recyclée. Qu'en pensez-vous ?</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Table basse" class="w-full h-64 object-cover">
+                    <div class="p-4 flex justify-between border-t">
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-heart mr-1"></i> 24
+                        </button>
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-comment mr-1"></i> 5
+                        </button>
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="fas fa-share mr-1"></i> Partager
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Utilisateur" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Jean Martin</h4>
+                            <p class="text-gray-500 text-sm">Hier · <i class="fas fa-user-friends"></i></p>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-3">
+                        <p>Tutoriel complet : comment installer une étagère flottante en 10 étapes simples #bricolage #diy</p>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1601760561441-16420502c7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tutoriel étagère" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <button class="bg-white rounded-full p-3">
+                                <i class="fas fa-play text-indigo-600 text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between border-t">
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-heart mr-1"></i> 42
+                        </button>
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="far fa-comment mr-1"></i> 8
+                        </button>
+                        <button class="flex items-center text-gray-500 hover:text-indigo-600">
+                            <i class="fas fa-share mr-1"></i> Partager
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Keluvato Group</h3>
+                    <p class="text-gray-400">La communauté des passionnés de décoration, bricolage et design d'intérieur.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Boutique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Communauté</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Inspirations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Entreprise</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Carrières</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Presse</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Réseaux sociaux</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>© 2023 Keluvato Group. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

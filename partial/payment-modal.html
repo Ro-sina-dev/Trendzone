@@ -1,0 +1,345 @@
+ <!-- Checkout Modal - Panier (étape 1) -->
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Finaliser votre commande</h2>
+        
+        <div class="checkout-steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div>Panier</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Livraison</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Paiement</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Confirmation</div>
+            </div>
+        </div>
+        
+        <div class="checkout-form">
+            <h3>Votre panier</h3>
+            <div id="cart-items">
+                <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+                <div class="cart-item">
+                    <img src="produit1.jpg" alt="Produit" width="60">
+                    <div class="cart-item-details">
+                        <h4>Nom du produit</h4>
+                        <p>Quantité: 1</p>
+                    </div>
+                    <div class="cart-item-price">€19.99</div>
+                </div>
+            </div>
+            
+            <div class="checkout-summary">
+                <div class="summary-item">
+                    <span>Sous-total</span>
+                    <span id="subtotal">€19.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Livraison</span>
+                    <span>Gratuite</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span id="total">€19.99</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="coupon">Code promo</label>
+                <input type="text" id="coupon" class="form-control" placeholder="Entrez votre code promo">
+                <button id="apply-coupon" class="btn btn-primary" style="margin-top: 0.5rem;">Appliquer</button>
+            </div>
+            
+            <button id="proceed-to-delivery" class="btn btn-primary" style="margin-top: 1.5rem;">Passer à la livraison</button>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal - Livraison (étape 2) -->
+<div id="delivery-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Finaliser votre commande</h2>
+        
+        <div class="checkout-steps">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div>Panier</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <div>Livraison</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Paiement</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Confirmation</div>
+            </div>
+        </div>
+        
+        <div class="checkout-form">
+            <h3>Informations de livraison</h3>
+            
+            <div class="form-group">
+                <label for="full-name">Nom complet</label>
+                <input type="text" id="full-name" class="form-control" placeholder="Votre nom complet">
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-address">Adresse</label>
+                <input type="text" id="delivery-address" class="form-control" placeholder="Votre adresse">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="delivery-city">Ville</label>
+                    <input type="text" id="delivery-city" class="form-control" placeholder="Votre ville">
+                </div>
+                <div class="form-group">
+                    <label for="delivery-zip">Code postal</label>
+                    <input type="text" id="delivery-zip" class="form-control" placeholder="Code postal">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-country">Pays</label>
+                <select id="delivery-country" class="form-control">
+                    <option value="">Sélectionnez un pays</option>
+                    <option value="FR">France</option>
+                    <option value="BE">Belgique</option>
+                    <option value="CH">Suisse</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-phone">Téléphone</label>
+                <input type="tel" id="delivery-phone" class="form-control" placeholder="Votre numéro de téléphone">
+            </div>
+            
+            <div class="checkout-summary">
+                <div class="summary-item">
+                    <span>Sous-total</span>
+                    <span>€19.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Livraison</span>
+                    <span>Gratuite</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span>€19.99</span>
+                </div>
+            </div>
+            
+            <button id="proceed-to-payment" class="btn btn-primary">Passer au paiement</button>
+            <button id="back-to-cart" class="btn btn-secondary">Retour au panier</button>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal - Paiement (étape 3) -->
+<div id="payment-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Finaliser votre commande</h2>
+        
+        <div class="checkout-steps">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div>Panier</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">2</div>
+                <div>Livraison</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">3</div>
+                <div>Paiement</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Confirmation</div>
+            </div>
+        </div>
+        
+        <div class="checkout-form">
+            <h3>Méthode de paiement</h3>
+            
+            <div class="payment-methods">
+                <div class="payment-method active">
+                    <input type="radio" name="payment-method" id="credit-card" checked>
+                    <label for="credit-card">Carte de crédit</label>
+                    <div class="payment-details">
+                        <div class="form-group">
+                            <label for="card-number">Numéro de carte</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">Date d'expiration</label>
+                                <input type="text" id="card-expiry" class="form-control" placeholder="MM/AA">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvc">CVC</label>
+                                <input type="text" id="card-cvc" class="form-control" placeholder="123">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Nom sur la carte</label>
+                            <input type="text" id="card-name" class="form-control" placeholder="Votre nom">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <input type="radio" name="payment-method" id="paypal">
+                    <label for="paypal">PayPal</label>
+                </div>
+            </div>
+            
+            <div class="checkout-summary">
+                <div class="summary-item">
+                    <span>Sous-total</span>
+                    <span>€19.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Livraison</span>
+                    <span>Gratuite</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span>€19.99</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="terms-agree">
+                <label for="terms-agree">J'accepte les conditions générales de vente</label>
+            </div>
+            
+            <button id="confirm-order" class="btn btn-primary">Confirmer la commande</button>
+            <button id="back-to-delivery" class="btn btn-secondary">Retour à la livraison</button>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal - Confirmation (étape 4) -->
+<div id="confirmation-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Finaliser votre commande</h2>
+        
+        <div class="checkout-steps">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div>Panier</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">2</div>
+                <div>Livraison</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">3</div>
+                <div>Paiement</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">4</div>
+                <div>Confirmation</div>
+            </div>
+        </div>
+        
+        <div class="checkout-form">
+            <div class="confirmation-message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <h3>Commande confirmée !</h3>
+                <p>Merci pour votre achat. Votre commande #12345 a été passée avec succès.</p>
+                <p>Un email de confirmation vous a été envoyé.</p>
+            </div>
+            
+            <div class="order-summary">
+                <h4>Détails de la commande</h4>
+                <div class="summary-item">
+                    <span>Date</span>
+                    <span>21 juillet 2025</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total</span>
+                    <span>€19.99</span>
+                </div>
+                <div class="summary-item">
+                    <span>Méthode de paiement</span>
+                    <span>Carte de crédit</span>
+                </div>
+                <div class="summary-item">
+                    <span>Adresse de livraison</span>
+                    <span>123 Rue Example, Paris, France</span>
+                </div>
+            </div>
+            
+            <button id="return-to-shop" class="btn btn-primary">Retour à la boutique</button>
+        </div>
+    </div>
+</div>
+
+<script>
+                // Navigation entre les étapes
+                document.getElementById('proceed-to-delivery').addEventListener('click', function() {
+                    document.getElementById('checkout-modal').style.display = 'none';
+                    document.getElementById('delivery-modal').style.display = 'block';
+                });
+
+                document.getElementById('proceed-to-payment').addEventListener('click', function() {
+                    document.getElementById('delivery-modal').style.display = 'none';
+                    document.getElementById('payment-modal').style.display = 'block';
+                });
+
+                document.getElementById('confirm-order').addEventListener('click', function() {
+                    document.getElementById('payment-modal').style.display = 'none';
+                    document.getElementById('confirmation-modal').style.display = 'block';
+                });
+
+                // Boutons de retour
+                document.getElementById('back-to-cart').addEventListener('click', function() {
+                    document.getElementById('delivery-modal').style.display = 'none';
+                    document.getElementById('checkout-modal').style.display = 'block';
+                });
+
+                document.getElementById('back-to-delivery').addEventListener('click', function() {
+                    document.getElementById('payment-modal').style.display = 'none';
+                    document.getElementById('delivery-modal').style.display = 'block';
+                });
+
+                document.getElementById('return-to-shop').addEventListener('click', function() {
+                    document.getElementById('confirmation-modal').style.display = 'none';
+                    // Redirection vers la page d'accueil
+                    window.location.href = '/';
+                });
+
+                // Fermeture des modals
+                document.querySelectorAll('.close-modal').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        this.closest('.modal').style.display = 'none';
+                    });
+                });
+
+                // Ouverture du modal panier (exemple)
+                function openCartModal() {
+                    document.getElementById('checkout-modal').style.display = 'block';
+                }
+        </script>
