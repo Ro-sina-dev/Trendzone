@@ -1,0 +1,229 @@
+<header id="mainHeader" style="background: #1F4E5F; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: top 0.3s;">
+    <div class="container header-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        
+        <!-- Logo -->
+        <div class="logo-wrapper">
+            <!-- Votre logo ici -->
+        </div>
+        
+        <!-- Icônes et liens -->
+        <div class="header-icons" style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px;">
+            <!-- Sélecteur de pays/devise -->
+            <div class="country-dropdown" style="position: relative;">
+                <button id="countryToggle" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; padding: 6px 8px; border-radius: 20px;">
+                    <i class="fas fa-globe" style="font-size: 16px;"></i>
+                    <span class="country-flag" style="width: 20px; height: 15px; background-image: url('https://flagcdn.com/w20/fr.png'); background-size: cover;"></span>
+                    <span class="country-code" style="font-size: 14px;">FR</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 3px;"></i>
+                </button>
+
+                <div id="dropdownCountry" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; width: 320px; max-height: 60vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 1000; margin-top: 5px;">
+                    <div style="position: sticky; top: 0; background: white; z-index: 1; padding: 15px; border-bottom: 1px solid #eee;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; font-size: 16px; color: #1F4E5F;">
+                                <i class="fas fa-globe" style="margin-right: 8px;"></i>
+                                Sélectionnez votre pays
+                            </h4>
+                            <span id="closeCountryMenu" style="cursor: pointer; font-size: 18px;">&times;</span>
+                        </div>
+                        <input type="text" id="countrySearch" placeholder="Rechercher un pays..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">
+                    </div>
+                    <div id="countryList" style="padding: 5px 0;">
+                        <!-- La liste des pays sera générée dynamiquement par JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Utilisateur -->
+            <div class="user-dropdown" style="position: relative;">
+                <!-- ... (votre menu utilisateur existant) ... -->
+            </div>
+            
+            <!-- Profil professionnel -->
+            <a href="login.html" class="pro-link" style="font-size: 14px; color: white; background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 20px; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                <i class="fas fa-briefcase" style="font-size: 14px;"></i>
+                <span class="pro-text">Pro</span>
+            </a>
+
+            <!-- Menu Aide -->
+            <div class="help-dropdown" style="position: relative;">
+                <!-- ... (votre menu aide existant) ... -->
+            </div>
+            
+            <!-- Panier -->
+            <a href="#" id="cart-icon" style="position: relative; color: white; text-decoration: none; padding: 6px;">
+                <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
+                <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background: white; color: #4a6bff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">2</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<script>
+// Liste complète des pays avec leurs devises (exemple partiel)
+const countries = [
+    { code: 'FR', name: 'France', currency: 'EUR', symbol: '€', flag: 'fr' },
+    { code: 'DE', name: 'Allemagne', currency: 'EUR', symbol: '€', flag: 'de' },
+    { code: 'US', name: 'États-Unis', currency: 'USD', symbol: '$', flag: 'us' },
+    { code: 'GB', name: 'Royaume-Uni', currency: 'GBP', symbol: '£', flag: 'gb' },
+    { code: 'JP', name: 'Japon', currency: 'JPY', symbol: '¥', flag: 'jp' },
+    { code: 'CA', name: 'Canada', currency: 'CAD', symbol: '$', flag: 'ca' },
+    { code: 'AU', name: 'Australie', currency: 'AUD', symbol: '$', flag: 'au' },
+    { code: 'CN', name: 'Chine', currency: 'CNY', symbol: '¥', flag: 'cn' },
+    { code: 'BR', name: 'Brésil', currency: 'BRL', symbol: 'R$', flag: 'br' },
+    { code: 'IN', name: 'Inde', currency: 'INR', symbol: '₹', flag: 'in' },
+    // Ajoutez ici tous les autres pays nécessaires
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const countryToggle = document.getElementById('countryToggle');
+    const dropdownCountry = document.getElementById('dropdownCountry');
+    const countryList = document.getElementById('countryList');
+    const countrySearch = document.getElementById('countrySearch');
+    const closeCountryMenu = document.getElementById('closeCountryMenu');
+    
+    // Générer la liste des pays
+    function generateCountryList(filter = '') {
+        countryList.innerHTML = '';
+        const filtered = filter ? 
+            countries.filter(c => c.name.toLowerCase().includes(filter.toLowerCase())) : 
+            countries;
+        
+        filtered.forEach(country => {
+            const countryElement = document.createElement('div');
+            countryElement.className = 'country-option';
+            countryElement.style.display = 'flex';
+            countryElement.style.alignItems = 'center';
+            countryElement.style.padding = '10px 15px';
+            countryElement.style.cursor = 'pointer';
+            countryElement.style.borderBottom = '1px solid #f5f5f5';
+            countryElement.setAttribute('data-country', country.code);
+            countryElement.setAttribute('data-currency', country.currency);
+            
+            countryElement.innerHTML = `
+                <span style="width: 25px; height: 18px; background-image: url('https://flagcdn.com/w20/${country.flag}.png'); background-size: cover; margin-right: 10px;"></span>
+                <span style="flex: 1; font-size: 14px;">${country.name}</span>
+                <span style="color: #666; font-size: 13px;">${country.symbol} ${country.currency}</span>
+            `;
+            
+            countryElement.addEventListener('click', () => selectCountry(country));
+            countryList.appendChild(countryElement);
+        });
+    }
+    
+    // Sélectionner un pays
+    function selectCountry(country) {
+        document.querySelector('.country-flag').style.backgroundImage = `url('https://flagcdn.com/w20/${country.flag}.png')`;
+        document.querySelector('.country-code').textContent = country.code;
+        dropdownCountry.style.display = 'none';
+        
+        // Ici vous pouvez implémenter la conversion
+        convertPrices(country.currency);
+        console.log(`Pays sélectionné: ${country.name}, Devise: ${country.currency}`);
+    }
+    
+    // Fonction de conversion (exemple)
+    function convertPrices(targetCurrency) {
+        // 1. Récupérer le taux de change depuis une API (ex: https://exchangerate-api.com)
+        // 2. Convertir tous les prix sur la page
+        // Exemple simplifié:
+        fetch(`https://api.exchangerate-api.com/v4/latest/EUR`)
+            .then(response => response.json())
+            .then(data => {
+                const rate = data.rates[targetCurrency];
+                if (rate) {
+                    document.querySelectorAll('.price').forEach(priceElement => {
+                        const originalPrice = parseFloat(priceElement.getAttribute('data-original-price'));
+                        const convertedPrice = (originalPrice * rate).toFixed(2);
+                        priceElement.textContent = `${convertedPrice} ${targetCurrency}`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Erreur de conversion:", error);
+                // Solution de repli: afficher les prix dans la devise d'origine
+            });
+    }
+    
+    // Gestion des événements
+    countryToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownCountry.style.display = dropdownCountry.style.display === 'block' ? 'none' : 'block';
+        if (dropdownCountry.style.display === 'block') {
+            generateCountryList();
+            countrySearch.focus();
+        }
+    });
+    
+    closeCountryMenu.addEventListener('click', () => {
+        dropdownCountry.style.display = 'none';
+    });
+    
+    countrySearch.addEventListener('input', (e) => {
+        generateCountryList(e.target.value);
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.country-dropdown')) {
+            dropdownCountry.style.display = 'none';
+        }
+    });
+    
+    // Initialisation
+    generateCountryList();
+});
+</script>
+
+<style>
+    /* Animation pour les menus déroulants */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Styles responsives */
+    @media (max-width: 768px) {
+        .header-icons {
+            gap: 8px !important;
+        }
+        
+        .country-code, .pro-text {
+            display: none;
+        }
+        
+        .country-toggle, .pro-link, #helpToggle {
+            padding: 6px !important;
+        }
+        
+        #dropdownCountry {
+            width: 280px !important;
+            right: 0;
+            left: auto !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .header-container {
+            padding: 0 10px !important;
+        }
+        
+        #dropdownCountry {
+            width: 260px !important;
+        }
+    }
+    
+    /* Style pour la liste des pays */
+    .country-option:hover {
+        background-color: #f8f8f8;
+    }
+    
+    #dropdownCountry::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #dropdownCountry::-webkit-scrollbar-thumb {
+        background: #1F4E5F;
+        border-radius: 3px;
+    }
+</style>
+

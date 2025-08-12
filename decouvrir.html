@@ -4,478 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Découvrir les articles | Keluvato Group</title>
-    <style>
-        :root {
-            --primary: #4a6bff;
-            --secondary: #4ECDC4;
-            --dark: #292F36;
-            --light: #F7FFF7;
-            --beige: #f5f5dc;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f9f9f9;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .header-icons {
-            display: flex;
-            align-items: center;
-        }
-        
-        .header-icons a {
-            margin-left: 1rem;
-            color: var(--dark);
-            font-size: 1.2rem;
-            position: relative;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Hero Section */
-        .discover-hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        
-        .discover-hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .discover-hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Filters Section */
-        .filters {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-        
-        .filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .filter-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .filter-select {
-            width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-        
-        .filter-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .filter-btn:hover {
-            background: #3a5aed;
-        }
-        
-        /* Products Grid */
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .sort-options {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .product-img {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .like-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: white;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #ccc;
-            transition: all 0.2s;
-        }
-        
-        .like-btn.liked {
-            color: var(--primary);
-        }
-        
-        .product-info {
-            padding: 1.2rem;
-        }
-        
-        .product-info h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-        }
-        
-        .product-price .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
-        }
-        
-        .btn-add-to-cart {
-            width: 100%;
-            padding: 0.7rem;
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .btn-add-to-cart:hover {
-            background: #1a1f24;
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 2rem 0;
-        }
-        
-        .page-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .page-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .page-btn:hover:not(.active) {
-            background: #f5f5f5;
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            background: var(--beige);
-            color: var(--dark);
-            padding: 3rem 1rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .newsletter h2 {
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 6px 0 0 6px;
-            font-size: 0.95rem;
-        }
-        
-        .newsletter-form button {
-            padding: 0 1.5rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0 6px 6px 0;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-col h3 {
-            margin-bottom: 1.2rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 0.6rem;
-        }
-        
-        .footer-col ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-            
-            nav ul {
-                margin: 1rem 0;
-            }
-            
-            nav ul li {
-                margin: 0 0.8rem;
-            }
-            
-            .discover-hero {
-                padding: 3rem 1rem;
-            }
-            
-            .discover-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .discover-hero p {
-                font-size: 1rem;
-            }
-            
-            .products-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-form input {
-                border-radius: 6px;
-                margin-bottom: 0.5rem;
-            }
-            
-            .newsletter-form button {
-                border-radius: 6px;
-                padding: 0.9rem;
-            }
-        }
-    </style>
+<link rel="stylesheet" href="css/deco.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
- <style>
+   
+<style>
     
 .logo-wrapper {
     background-image: url('assets/IMG.png');
@@ -485,44 +20,99 @@
     /* display: flex;*/
    /*  justify-content: left;*/
     width: 250px;     /* augmente la largeur */
-    height: 100px;    /* augmente la hauteur */
+    height: 80px;    /* augmente la hauteur */
     
     flex-shrink: 0;   /* empêche le logo de rétrécir sur petit écran */
 }
+
+@media (max-width: 768px) {
+        .desktop-search, .desktop-icons {
+            display: none !important;
+        }
+        
+        .mobile-search-icon, .mobile-menu-toggle {
+            display: block !important;
+        }
+        
+        .logo-wrapper {
+            flex: 0 0 auto !important;
+        }
+        
+        .header-container {
+            justify-content: space-between !important;
+        }
+
+         }
+
+                  /* Mobile : max 768px */
+@media (max-width: 768px) {
+    /* On cache les icônes desktop inutiles */
+    .desktop-icons {
+        display: none !important;
+    }
+
+    /* On affiche le menu burger */
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
+    /* Centrer la recherche */
+    .search-container {
+        position: absolute !important;
+        left: 60%;
+        transform: translateX(-50%);
+        width: 40%;
+        max-width: 200px;
+    }
+
+    /* Empêcher qu'elle soit écrasée */
+    .search-container input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
 </style>
 </head>
 <body>
     <!-- Header -->
        <!-- Header -->
        <!-- Header -->
-<header id="mainHeader" style="background: #000000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: top 0.3s;">
-    <div class="container header-container" style="display: flex; align-items: center;  justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0px 20px;">
+<header id="" style="background: #1F4E5F; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: top 0.3s;">
+    <div class="container header-container" style="display: flex; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
         
-        <!-- Logo -->
-        <div class="logo-wrapper" >
-        </div>
         
-        <!-- Recherche -->
-        <div class="search-container" style="flex: 1 1 auto; max-width: 600px; min-width: 200px; position: relative;">
+       <a href="index.html" style="display: inline-block;">
+    <div class="logo-wrapper" style="flex: 0 0 auto;">
+        <!-- Votre logo (peut être une image ou un fond CSS) -->
+    </div>
+</a>
+        <!-- Barre de recherche -->
+        <div class="search-container" style="flex: 1 1 auto; max-width: 500px; margin: 0 auto; position: relative;">
             <input type="text" placeholder="Rechercher des meubles, décoration..." 
-                style="width: 100%; padding: 12px 20px; border: 2px solid #f1f1f1; border-radius: 30px; font-size: 16px; outline: none; transition: all 0.3s; background: white;">
-            <button style="position: absolute; right: 5px; top: 5px; background: white; color: #4a6bff; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                style="width: 100%; padding: 10px 15px; border: 2px solid #f1f1f1; border-radius: 25px; font-size: 14px; outline: none; background: white;">
+            <button style="position: absolute; right: 3px; top: 3px; background: white; color: #4a6bff; border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer;">
                 <i class="fas fa-search"></i>
             </button>
         </div>
         
-        <!-- Icônes et liens -->
-        <div class="header-icons" style="flex: 0 0 auto; display: flex; align-items: center; gap: 20px; margin-left: 30px;">
-            <!-- Menu Utilisateur - Version améliorée -->
+        <div class="right-menu" style="display: flex; align-items: center; gap: 10px; flex: 0 0 auto;">
+            <!-- Menu burger pour mobile -->
+            <button class="mobile-menu-toggle" style="display: none; background: none; border: none; color: white; padding: 8px; cursor: pointer;">
+                <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" class="chakra-icon css-pks0an" aria-hidden="true">
+                    <path d="M2 3.188h16v1.615H2V3.188zM2 9.033h16v1.615H2V9.033zM2 14.606h16v1.615H2v-1.615z" fill="#ffffff"></path>
+                </svg>
+            </button>  
+        </div>   
+     
+        <!-- Icônes et liens (version desktop) -->
+        <div class="desktop-icons" style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px;">
             <div class="user-dropdown" style="position: relative;">
                 <button id="userToggle" style="background: none; border: none; cursor: pointer; color: white; position: relative; padding: 8px;">
                     <i class="fas fa-user" style="font-size: 22px; transition: all 0.2s;"></i>
                     <span class="user-pulse" style="position: absolute; top: 0; right: 0; width: 8px; height: 8px; background: #ffcc00; border-radius: 50%; border: 2px solid #4a6bff; display: none;"></span>
                 </button>
-
                 <div id="dropdownUser" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 220px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 100; overflow: hidden; margin-top: 10px; transform-origin: top right; animation: fadeIn 0.15s ease-out;">
-
-                    
                     <div style="padding: 8px 0; border-bottom: 1px solid #f5f5f5;">
                         <a href="profil.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
                             <i class="fas fa-user-circle" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
@@ -538,33 +128,19 @@
                             <span>Mes commandes</span>
                         </a>
                     </div>
-                    
-                    <div style="padding: 8px 0;">
-                        <a href="parametres.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
-                            <i class="fas fa-cog" style="margin-right: 12px; color: #607d8b; width: 20px; text-align: center;"></i>
-                            <span>Paramètres</span>
-                        </a>
-                        <a href="deconnexion.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
-                            <i class="fas fa-sign-out-alt" style="margin-right: 12px; color: #f44336; width: 20px; text-align: center;"></i>
-                            <span>Déconnexion</span>
-                        </a>
-                    </div>
                 </div>
             </div>
             
-            <!-- Profil professionnel -->
-            <a href="register-professionnel.html" style="font-size: 14px; color: white; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px;">
+            <a href="login.html" style="font-size: 14px; color: white; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px;">
                 <i class="fas fa-briefcase" style="font-size: 14px;"></i>
-                <span>Pro professionnel</span>
+                <span>Professional</span>
             </a>
-
-            <!-- Menu Aide -->
+            
             <div class="help-dropdown" style="position: relative;">
                 <button id="helpToggle" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; font-weight: 500; font-size: 16px; padding: 8px 12px; border-radius: 20px; transition: all 0.2s;">
                     <i class="fas fa-question-circle" style="font-size: 20px;"></i>
                     <span>Aide</span>
                 </button>
-
                 <div id="dropdownHelp" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 100; overflow: hidden; margin-top: 10px; transform-origin: top right; animation: fadeIn 0.15s ease-out;">
                     <div style="padding: 15px; background: linear-gradient(135deg, #4a6bff, #6a5acd); color: white;">
                         <h4 style="margin: 0; font-size: 16px; display: flex; align-items: center; gap: 10px;">
@@ -593,14 +169,465 @@
                 </div>
             </div>
             
-            <!-- Panier -->
-            <a href="#" id="cart-icon" style="position: relative; color: white; text-decoration: none; padding: 8px;">
-                <i class="fas fa-shopping-cart" style="font-size: 22px; transition: all 0.2s;"></i>
-                <span class="cart-count" style="position: absolute; top: 0; right: 0; background: white; color: #4a6bff; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">2</span>
+            <div class="language-dropdown" style="position: relative;">
+                <button id="languageToggle" style="background: none; border: none; cursor: pointer; color: white; padding: 6px 8px; border-radius: 20px; display: flex; align-items: center; gap: 5px;">
+                    <i class="fas fa-language" style="font-size: 16px;"></i>
+                    <span class="language-code">FR</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 3px;"></i>
+                </button>
+                <div id="dropdownLanguage" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 1000; margin-top: 5px;">
+                    <div style="padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f5f5f5;" onclick="changeLanguage('fr')">
+                        <span style="font-weight: bold;">Français</span>
+                    </div>
+                    <div style="padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f5f5f5;" onclick="changeLanguage('en')">
+                        <span>English</span>
+                    </div>
+                    <div style="padding: 10px 15px; cursor: pointer;" onclick="changeLanguage('es')">
+                        <span>Español</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="country-dropdown" style="position: relative;">
+                <button id="countryToggle" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; padding: 6px 8px; border-radius: 20px;">
+                    <i class="fas fa-globe" style="font-size: 16px;"></i>
+                    <span class="country-flag" style="width: 20px; height: 15px; background-image: url('https://flagcdn.com/w20/fr.png'); background-size: cover;"></span>
+                    <span class="country-code" style="font-size: 14px;">FR</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 3px;"></i>
+                </button>
+                <div id="dropdownCountry" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; width: 320px; max-height: 60vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 1000; margin-top: 5px;">
+                    <div style="position: sticky; top: 0; background: white; z-index: 1; padding: 15px; border-bottom: 1px solid #eee;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; font-size: 16px; color: #1F4E5F;">
+                                <i class="fas fa-globe" style="margin-right: 8px;"></i>
+                                Sélectionnez votre pays
+                            </h4>
+                            <span id="closeCountryMenu" style="cursor: pointer; font-size: 18px;">&times;</span>
+                        </div>
+                        <input type="text" id="countrySearch" placeholder="Rechercher un pays..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">
+                    </div>
+                    <div id="countryList" style="padding: 5px 0;">
+                        <!-- La liste des pays sera générée dynamiquement par JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" id="cart-icon" style="position: relative; color: white; text-decoration: none; padding: 6px;">
+                <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
+                <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background: white; color: #4a6bff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">2</span>
             </a>
         </div>
+        
+       
+        
     </div>
 </header>
+
+<!-- Modal mobile menu -->
+<div id="mobileMenuModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999; overflow-y: auto; padding: 60px 20px 20px; box-sizing: border-box;">
+    <button id="closeMobileMenu" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: white;">&times;</button>
+    
+    <div style="max-width: 500px; margin: 0 auto; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <div style="padding: 20px 0;">
+            <!-- Menu utilisateur -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #1F4E5F; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">Mon compte</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="profil.html" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-user-circle" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                        <span>Mon profil</span>
+                    </a>
+                    <a href="favoris.html" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-heart" style="margin-right: 12px; color: #ff4081; width: 20px; text-align: center;"></i>
+                        <span>Mes favoris</span>
+                        <span style="margin-left: auto; background: #ff4081; color: white; font-size: 12px; padding: 2px 8px; border-radius: 10px;">3</span>
+                    </a>
+                    <a href="commandes.html" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-box-open" style="margin-right: 12px; color: #4caf50; width: 20px; text-align: center;"></i>
+                        <span>Mes commandes</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Profil professionnel -->
+            <div style="margin-bottom: 20px;">
+                <a href="login.html" style="display: flex; align-items: center; padding: 12px 15px; color: white; background: #1F4E5F; border-radius: 5px; text-decoration: none; font-size: 16px;">
+                    <i class="fas fa-briefcase" style="margin-right: 12px;"></i>
+                    <span>Espace Professionnel</span>
+                </a>
+            </div>
+            
+            <!-- Menu Aide -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #1F4E5F; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">Aide & Contact</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="#" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-truck" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                        <span>Suivre ma commande</span>
+                    </a>
+                    <a href="#" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-exchange-alt" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                        <span>Faire un retour</span>
+                    </a>
+                    <a href="#" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-ban" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                        <span>Annuler ma commande</span>
+                    </a>
+                    <a href="#" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9;">
+                        <i class="fas fa-phone-alt" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                        <span>Contactez-nous</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sélecteur de langue -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #1F4E5F; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">Langue</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button onclick="changeLanguage('fr')" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9; border: none; cursor: pointer; text-align: left;">
+                        <span style="font-weight: bold;">Français</span>
+                    </button>
+                    <button onclick="changeLanguage('en')" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9; border: none; cursor: pointer; text-align: left;">
+                        <span>English</span>
+                    </button>
+                    <button onclick="changeLanguage('es')" style="display: flex; align-items: center; padding: 12px 15px; color: #333; text-decoration: none; font-size: 16px; border-radius: 5px; background: #f9f9f9; border: none; cursor: pointer; text-align: left;">
+                        <span>Español</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Panier -->
+            <div>
+                <a href="#" style="display: flex; align-items: center; justify-content: center; padding: 12px 15px; color: white; background: #4a6bff; border-radius: 5px; text-decoration: none; font-size: 16px; font-weight: 500;">
+                    <i class="fas fa-shopping-cart" style="margin-right: 10px;"></i>
+                    <span>Panier (2)</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Media queries pour la version mobile */
+    @media (max-width: 768px) {
+        .desktop-icons {
+            display: none !important;
+        }
+        
+        .mobile-menu-toggle {
+            display: block !important;
+        }
+        
+        .logo-wrapper {
+            flex: 0 0 auto !important;
+        }
+        
+        .search-container {
+            flex: 1 1 auto !important;
+            margin: 0 10px !important;
+            max-width: none !important;
+        }
+        
+        .header-container {
+            padding: 0 10px !important;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .mobile-menu-toggle, #mobileMenuModal {
+            display: none !important;
+        }
+    }
+    
+    /* Animation pour les menus déroulants */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .dropdown-menu {
+        animation: fadeIn 0.15s ease-out;
+    }
+</style>
+
+<script>
+    // Script pour gérer l'affichage mobile
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du menu burger
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenuModal = document.getElementById('mobileMenuModal');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        
+        if (mobileMenuToggle && mobileMenuModal) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenuModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        if (closeMobileMenu && mobileMenuModal) {
+            closeMobileMenu.addEventListener('click', function() {
+                mobileMenuModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+        
+        // Fermer le modal si on clique en dehors
+        mobileMenuModal.addEventListener('click', function(e) {
+            if (e.target === mobileMenuModal) {
+                mobileMenuModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Gestion des menus déroulants desktop
+        const toggleButtons = document.querySelectorAll('[id$="Toggle"]');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdownId = this.id.replace('Toggle', '');
+                const dropdown = document.getElementById(dropdownId);
+                const isVisible = dropdown.style.display === 'block';
+                
+                // Fermer tous les autres menus
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu.id !== dropdownId) {
+                        menu.style.display = 'none';
+                    }
+                });
+                
+                // Basculer l'affichage du menu courant
+                dropdown.style.display = isVisible ? 'none' : 'block';
+            });
+        });
+        
+        // Fermer les menus déroulants quand on clique ailleurs
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+        });
+        
+        // Empêcher la fermeture quand on clique dans le menu
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+        
+        // Fonction pour changer la langue
+        window.changeLanguage = function(lang) {
+            console.log('Changement de langue vers:', lang);
+            // Ici vous ajouteriez la logique pour changer la langue
+            document.querySelectorAll('.language-code').forEach(el => {
+                el.textContent = lang.toUpperCase();
+            });
+            document.getElementById('mobileMenuModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+    });
+</script>
+
+<script>
+// Liste complète des pays avec leurs devises (exemple partiel)
+const countries = [
+    { code: 'FR', name: 'France', currency: 'EUR', symbol: '€', flag: 'fr' },
+    { code: 'DE', name: 'Allemagne', currency: 'EUR', symbol: '€', flag: 'de' },
+    { code: 'US', name: 'États-Unis', currency: 'USD', symbol: '$', flag: 'us' },
+    { code: 'GB', name: 'Royaume-Uni', currency: 'GBP', symbol: '£', flag: 'gb' },
+    { code: 'JP', name: 'Japon', currency: 'JPY', symbol: '¥', flag: 'jp' },
+    { code: 'CA', name: 'Canada', currency: 'CAD', symbol: '$', flag: 'ca' },
+    { code: 'AU', name: 'Australie', currency: 'AUD', symbol: '$', flag: 'au' },
+    { code: 'CN', name: 'Chine', currency: 'CNY', symbol: '¥', flag: 'cn' },
+    { code: 'BR', name: 'Brésil', currency: 'BRL', symbol: 'R$', flag: 'br' },
+    { code: 'IN', name: 'Inde', currency: 'INR', symbol: '₹', flag: 'in' },
+    // Ajoutez ici tous les autres pays nécessaires
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const countryToggle = document.getElementById('countryToggle');
+    const dropdownCountry = document.getElementById('dropdownCountry');
+    const countryList = document.getElementById('countryList');
+    const countrySearch = document.getElementById('countrySearch');
+    const closeCountryMenu = document.getElementById('closeCountryMenu');
+    
+    // Générer la liste des pays
+    function generateCountryList(filter = '') {
+        countryList.innerHTML = '';
+        const filtered = filter ? 
+            countries.filter(c => c.name.toLowerCase().includes(filter.toLowerCase())) : 
+            countries;
+        
+        filtered.forEach(country => {
+            const countryElement = document.createElement('div');
+            countryElement.className = 'country-option';
+            countryElement.style.display = 'flex';
+            countryElement.style.alignItems = 'center';
+            countryElement.style.padding = '10px 15px';
+            countryElement.style.cursor = 'pointer';
+            countryElement.style.borderBottom = '1px solid #f5f5f5';
+            countryElement.setAttribute('data-country', country.code);
+            countryElement.setAttribute('data-currency', country.currency);
+            
+            countryElement.innerHTML = `
+                <span style="width: 25px; height: 18px; background-image: url('https://flagcdn.com/w20/${country.flag}.png'); background-size: cover; margin-right: 10px;"></span>
+                <span style="flex: 1; font-size: 14px;">${country.name}</span>
+                <span style="color: #666; font-size: 13px;">${country.symbol} ${country.currency}</span>
+            `;
+            
+            countryElement.addEventListener('click', () => selectCountry(country));
+            countryList.appendChild(countryElement);
+        });
+    }
+    
+    // Sélectionner un pays
+    function selectCountry(country) {
+        document.querySelector('.country-flag').style.backgroundImage = `url('https://flagcdn.com/w20/${country.flag}.png')`;
+        document.querySelector('.country-code').textContent = country.code;
+        dropdownCountry.style.display = 'none';
+        
+        // Ici vous pouvez implémenter la conversion
+        convertPrices(country.currency);
+        console.log(`Pays sélectionné: ${country.name}, Devise: ${country.currency}`);
+    }
+    
+    // Fonction de conversion (exemple)
+    function convertPrices(targetCurrency) {
+        // 1. Récupérer le taux de change depuis une API (ex: https://exchangerate-api.com)
+        // 2. Convertir tous les prix sur la page
+        // Exemple simplifié:
+        fetch(`https://api.exchangerate-api.com/v4/latest/EUR`)
+            .then(response => response.json())
+            .then(data => {
+                const rate = data.rates[targetCurrency];
+                if (rate) {
+                    document.querySelectorAll('.price').forEach(priceElement => {
+                        const originalPrice = parseFloat(priceElement.getAttribute('data-original-price'));
+                        const convertedPrice = (originalPrice * rate).toFixed(2);
+                        priceElement.textContent = `${convertedPrice} ${targetCurrency}`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Erreur de conversion:", error);
+                // Solution de repli: afficher les prix dans la devise d'origine
+            });
+    }
+    
+    // Gestion des événements
+    countryToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownCountry.style.display = dropdownCountry.style.display === 'block' ? 'none' : 'block';
+        if (dropdownCountry.style.display === 'block') {
+            generateCountryList();
+            countrySearch.focus();
+        }
+    });
+    
+    closeCountryMenu.addEventListener('click', () => {
+        dropdownCountry.style.display = 'none';
+    });
+    
+    countrySearch.addEventListener('input', (e) => {
+        generateCountryList(e.target.value);
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.country-dropdown')) {
+            dropdownCountry.style.display = 'none';
+        }
+    });
+    
+    // Initialisation
+    generateCountryList();
+});
+</script>
+
+
+
+<script>
+// Liste complète des pays (exemple partiel)
+const countrie = [
+    { code: 'FR', name: 'France', currency: 'EUR', symbol: '€', flag: 'fr' },
+    { code: 'DE', name: 'Allemagne', currency: 'EUR', symbol: '€', flag: 'de' },
+    { code: 'US', name: 'États-Unis', currency: 'USD', symbol: '$', flag: 'us' },
+    // ... autres pays ...
+];
+
+// Dictionnaire de traduction
+const translations = {
+    'fr': {
+        'search_placeholder': 'Rechercher des meubles, décoration...',
+        'select_country': 'Sélectionnez votre pays',
+        'search_country': 'Rechercher un pays...'
+    },
+    'en': {
+        'search_placeholder': 'Search for furniture, decor...',
+        'select_country': 'Select your country',
+        'search_country': 'Search for a country...'
+    },
+    'es': {
+        'search_placeholder': 'Buscar muebles, decoración...',
+        'select_country': 'Selecciona tu país',
+        'search_country': 'Buscar un país...'
+    }
+};
+
+// Langue par défaut
+let currentLanguage = 'fr';
+
+// Fonction pour changer la langue
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    document.querySelector('.language-code').textContent = lang.toUpperCase();
+    document.getElementById('dropdownLanguage').style.display = 'none';
+    
+    // Mettre à jour les textes traduits
+    document.querySelectorAll('.translate').forEach(el => {
+        const key = el.getAttribute('data-key');
+        el.textContent = translations[lang][key] || translations['fr'][key];
+    });
+    
+    // Mettre à jour le placeholder de recherche
+    document.querySelector('.search-container input').placeholder = translations[lang]['search_placeholder'];
+    document.getElementById('countrySearch').placeholder = translations[lang]['search_country'];
+    
+    // Sauvegarder la préférence
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer la langue sauvegardée ou détecter la langue du navigateur
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    const browserLanguage = navigator.language.slice(0, 2);
+    
+    if (savedLanguage) {
+        changeLanguage(savedLanguage);
+    } else if (translations[browserLanguage]) {
+        changeLanguage(browserLanguage);
+    }
+    
+    // Gestion des menus déroulants
+    const languageToggle = document.getElementById('languageToggle');
+    const dropdownLanguage = document.getElementById('dropdownLanguage');
+    
+    languageToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownLanguage.style.display = dropdownLanguage.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-dropdown')) {
+            dropdownLanguage.style.display = 'none';
+        }
+    });
+    
+    // ... (le reste de votre code existant pour les pays) ...
+});
+
+// ... (le reste de votre code JavaScript existant) ...
+</script>
 
 <style>
     @keyframes fadeIn {
@@ -890,17 +917,29 @@ window.addEventListener("scroll", function() {
             <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
-    
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Abonnez-vous à notre newsletter</h2>
-            <p>Recevez en exclusivité nos offres spéciales et nouveautés directement dans votre boîte mail.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Votre adresse email" required>
-                <button type="submit">S'abonner</button>
-            </form>
-        </div>
+     <!-- Newsletter -->
+    <section class="newsletter" style=" padding: 5rem 0; margin: 4rem 0; position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2;">
+                    <div style="background: rgba(255, 255, 255, 0.1); background: linear-gradient(135deg, #4a6bff 0%, #3a1c71 100%); backdrop-filter: blur(10px); border-radius: 20px; padding: 2.5rem; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
+                        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1); font-family: 'Montserrat', sans-serif;">Ne manquez aucune offre exceptionnelle !</h2>
+                        <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; font-family: 'Montserrat', sans-serif;">Rejoignez notre communauté et bénéficiez de <span style="font-weight: bold; color: #fff;">10% de réduction</span> immédiate + des surprises exclusives chaque semaine !</p>
+                        
+                        <form class="newsletter-form" style="display: flex; max-width: 500px; margin: 0 auto; gap: 10px;">
+                            <input type="email" placeholder="Votre adresse email" required 
+                                style="flex: 1; padding: 15px 20px; border: none; border-radius: 50px; font-size: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-family: 'Montserrat', sans-serif;">
+                            <button type="submit" 
+                                    style="background: linear-gradient(to right, #4a6bff, #4ECDC4); color: white; border: none; padding: 0 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;">
+                                Je profite des offres
+                            </button>
+                        </form>
+                        
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; margin-top: 1.5rem; font-family: 'Montserrat', sans-serif;">* Nous détestons le spam autant que vous. Désabonnez-vous à tout moment.</p>
+                    </div>
+                </div>
+                
+        <!-- Éléments décoratifs modifiés -->
+            <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(74, 107, 255, 0.1); border-radius: 50%;"></div>
+            <div style="position: absolute; bottom: -80px; left: -80px; width: 250px; height: 250px; background: rgba(78, 205, 196, 0.08); border-radius: 50%;"></div>
     </section>
     
     <!-- Footer -->

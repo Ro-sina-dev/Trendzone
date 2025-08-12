@@ -33,6 +33,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+         
+
+ 
         }
         
         .header-container {
@@ -72,6 +75,8 @@
         .header-icons {
             display: flex;
             align-items: center;
+           
+            
         }
         
         .header-icons a {
@@ -578,7 +583,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
+               /* flex-direction: column;*/
                 padding: 1rem 0;
             }
             
@@ -1368,8 +1373,8 @@
         
         .modal-content {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
+           /* max-width: 90%;*/
+           /* max-height: 90%;*/
         }
         
         .modal-image {
@@ -1415,7 +1420,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
+               /* flex-direction: column;*/
                 padding: 1rem 0;
             }
             
@@ -1444,6 +1449,13 @@
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 gap: 1rem;
+            }
+
+            html, body {
+            
+  overflow-x: hidden;
+  max-width: 100%;
+
             }
         }
   

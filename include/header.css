@@ -1,0 +1,94 @@
+
+    /* Media queries pour la version mobile */
+    @media (max-width: 768px) {
+        .desktop-icons {
+            display: none !important;
+        }
+        
+        .mobile-menu-toggle {
+            display: block !important;
+        }
+        
+        .logo-wrapper {
+            flex: 0 0 auto !important;
+        }
+        
+        .search-container {
+            flex: 1 1 auto !important;
+            margin: 0 10px !important;
+            max-width: none !important;
+        }
+        
+        .header-container {
+            padding: 0 10px !important;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .mobile-menu-toggle, #mobileMenuModal {
+            display: none !important;
+        }
+    }
+    
+    /* Animation pour les menus déroulants */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .dropdown-menu {
+        animation: fadeIn 0.15s ease-out;
+    }
+
+
+
+      
+  
+
+        @media (max-width: 768px) {
+                .desktop-search, .desktop-icons {
+                    display: none !important;
+                }
+                
+                .mobile-search-icon, .mobile-menu-toggle {
+                    display: block !important;
+                }
+                
+                .logo-wrapper {
+                    flex: 0 0 auto !important;
+                }
+                
+                .header-container {
+                    justify-content: space-between !important;
+                }
+
+                }
+
+                        /* Mobile : max 768px */
+        @media (max-width: 768px) {
+            /* On cache les icônes desktop inutiles */
+    .desktop-icons {
+        display: none !important;
+    }
+
+    /* On affiche le menu burger */
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
+    /* Centrer la recherche */
+    .search-container {
+        position: absolute !important;
+        left: 60%;
+        transform: translateX(-50%);
+        width: 40%;
+        max-width: 200px;
+    }
+
+    /* Empêcher qu'elle soit écrasée */
+    .search-container input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+  }
+

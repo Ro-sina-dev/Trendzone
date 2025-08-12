@@ -1,0 +1,146 @@
+     <!-- Header -->
+<header id="mainHeader" style="background: #1F4E5F; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: top 0.3s;">
+    <div class="container header-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        
+        <!-- Logo -->
+        <div class="logo-wrapper">
+            <!-- Votre logo ici -->
+        </div>
+        
+        <!-- Barre de recherche -->
+        <div class="search-container" style="flex: 1 1 auto; max-width: 500px; margin: 0 15px; position: relative;">
+            <input type="text" placeholder="Rechercher des meubles, décoration..." 
+                style="width: 100%; padding: 10px 15px; border: 2px solid #f1f1f1; border-radius: 25px; font-size: 14px; outline: none; background: white;">
+            <button style="position: absolute; right: 3px; top: 3px; background: white; color: #4a6bff; border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer;">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- Icônes et liens -->
+        <div class="header-icons" style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px;">
+           
+
+            <div class="user-dropdown" style="position: relative;">
+                <button id="userToggle" style="background: none; border: none; cursor: pointer; color: white; position: relative; padding: 8px;">
+                    <i class="fas fa-user" style="font-size: 22px; transition: all 0.2s;"></i>
+                    <span class="user-pulse" style="position: absolute; top: 0; right: 0; width: 8px; height: 8px; background: #ffcc00; border-radius: 50%; border: 2px solid #4a6bff; display: none;"></span>
+                </button>
+
+                <div id="dropdownUser" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 220px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 100; overflow: hidden; margin-top: 10px; transform-origin: top right; animation: fadeIn 0.15s ease-out;">
+
+                    
+                    <div style="padding: 8px 0; border-bottom: 1px solid #f5f5f5;">
+                        <a href="profil.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-user-circle" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                            <span>Mon profil</span>
+                        </a>
+                        <a href="favoris.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-heart" style="margin-right: 12px; color: #ff4081; width: 20px; text-align: center;"></i>
+                            <span>Mes favoris</span>
+                            <span style="margin-left: auto; background: #ff4081; color: white; font-size: 11px; padding: 2px 6px; border-radius: 10px;">3</span>
+                        </a>
+                        <a href="commandes.html" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-box-open" style="margin-right: 12px; color: #4caf50; width: 20px; text-align: center;"></i>
+                            <span>Mes commandes</span>
+                        </a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+             <!-- Profil professionnel -->
+            <a href="login.html" style="font-size: 14px; color: white; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px;">
+                <i class="fas fa-briefcase" style="font-size: 14px;"></i>
+                <span>Professional</span>
+            </a>
+           
+            
+            <!-- Menu Aide -->
+            <div class="help-dropdown" style="position: relative;">
+                <button id="helpToggle" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; font-weight: 500; font-size: 16px; padding: 8px 12px; border-radius: 20px; transition: all 0.2s;">
+                    <i class="fas fa-question-circle" style="font-size: 20px;"></i>
+                    <span>Aide</span>
+                </button>
+
+                <div id="dropdownHelp" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 100; overflow: hidden; margin-top: 10px; transform-origin: top right; animation: fadeIn 0.15s ease-out;">
+                    <div style="padding: 15px; background: linear-gradient(135deg, #4a6bff, #6a5acd); color: white;">
+                        <h4 style="margin: 0; font-size: 16px; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-headset"></i>
+                            <span>Centre d'assistance</span>
+                        </h4>
+                    </div>
+                    <div style="padding: 8px 0;">
+                        <a href="#" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-truck" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                            <span>Suivre ma commande</span>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-exchange-alt" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                            <span>Faire un retour</span>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-ban" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                            <span>Annuler ma commande</span>
+                        </a>
+                        <a href="#" style="display: flex; align-items: center; padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-phone-alt" style="margin-right: 12px; color: #4a6bff; width: 20px; text-align: center;"></i>
+                            <span>Contactez-nous</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+              <!-- Sélecteur de langue -->
+            <div class="language-dropdown" style="position: relative;">
+                <button id="languageToggle" style="background: none; border: none; cursor: pointer; color: white; padding: 6px 8px; border-radius: 20px; display: flex; align-items: center; gap: 5px;">
+                    <i class="fas fa-language" style="font-size: 16px;"></i>
+                    <span class="language-code">FR</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 3px;"></i>
+                </button>
+                
+                <div id="dropdownLanguage" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; width: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 1000; margin-top: 5px;">
+                    <div style="padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f5f5f5;" onclick="changeLanguage('fr')">
+                        <span style="font-weight: bold;">Français</span>
+                    </div>
+                    <div style="padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f5f5f5;" onclick="changeLanguage('en')">
+                        <span>English</span>
+                    </div>
+                    <div style="padding: 10px 15px; cursor: pointer;" onclick="changeLanguage('es')">
+                        <span>Español</span>
+                    </div>
+                    <!-- Ajoutez d'autres langues au besoin -->
+                </div>
+            </div>
+            
+           <!-- Sélecteur de pays/devise -->
+            <div class="country-dropdown" style="position: relative;">
+                <button id="countryToggle" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; padding: 6px 8px; border-radius: 20px;">
+                    <i class="fas fa-globe" style="font-size: 16px;"></i>
+                    <span class="country-flag" style="width: 20px; height: 15px; background-image: url('https://flagcdn.com/w20/fr.png'); background-size: cover;"></span>
+                    <span class="country-code" style="font-size: 14px;">FR</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 3px;"></i>
+                </button>
+
+                <div id="dropdownCountry" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; width: 320px; max-height: 60vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; z-index: 1000; margin-top: 5px;">
+                    <div style="position: sticky; top: 0; background: white; z-index: 1; padding: 15px; border-bottom: 1px solid #eee;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; font-size: 16px; color: #1F4E5F;">
+                                <i class="fas fa-globe" style="margin-right: 8px;"></i>
+                                Sélectionnez votre pays
+                            </h4>
+                            <span id="closeCountryMenu" style="cursor: pointer; font-size: 18px;">&times;</span>
+                        </div>
+                        <input type="text" id="countrySearch" placeholder="Rechercher un pays..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px;">
+                    </div>
+                    <div id="countryList" style="padding: 5px 0;">
+                        <!-- La liste des pays sera générée dynamiquement par JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <!-- Panier -->
+            <a href="#" id="cart-icon" style="position: relative; color: white; text-decoration: none; padding: 6px;">
+                <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
+                <span class="cart-count" style="position: absolute; top: -5px; right: -5px; background: white; color: #4a6bff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">2</span>
+            </a>
+        </div>
+    </div>
+</header>
